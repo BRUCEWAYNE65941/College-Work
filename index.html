@@ -102,6 +102,9 @@
       font-weight: 600;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
     }
 
     .btn:hover {
@@ -118,12 +121,57 @@
       font-size: 0.9rem;
     }
 
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 25px;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 16px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .modal-content h2 {
+      margin-bottom: 15px;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .close {
+      float: right;
+      cursor: pointer;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2.8rem; }
       .card-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -159,11 +207,147 @@
           </a>
         </div>
       </div>
+
+      <!-- Card 3 - Python Code -->
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <div class="card-content">
+          <h3>Python Basics – Full Code</h3>
+          <p>Click below to view and copy the complete Python Basics file.</p>
+          <button onclick="openModal()" class="btn">
+            <i class="fas fa-copy"></i> View Code
+          </button>
+        </div>
+      </div>
     </div>
 
     <footer>
       <p>Keep learning • Stay curious</p>
     </footer>
   </div>
+
+  <!-- Modal -->
+  <div id="codeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Python Basics - Full Code</h2>
+      <pre id="codeBox"></pre>
+      <button class="btn" onclick="copyCode()">
+        <i class="fas fa-copy"></i> Copy Code
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const pythonCode = `
+# ================================================
+#  PYTHON BASICS - ALL IN ONE FILE (10 Lessons)
+# ================================================
+print("="*60)
+print("     WELCOME TO PYTHON BASICS - ALL IN ONE!")
+print("="*60)
+
+# 1. Variables & Data Types
+print("\\n1. Variables & Data Types")
+name = "Alice"
+age = 25
+height = 1.68
+is_student = True
+hobbies = ["coding", "music", "gaming"]
+
+print(f"Name: {name}, Age: {age}, Height: {height}m")
+print(f"Is student? {is_student}")
+print(f"Hobbies: {hobbies}")
+print(f"Age is of type: {type(age)}")
+
+# 2. Input + If-Elif-Else
+print("\\n2. Input + Conditional Statements")
+age_input = int(input("Enter your age: "))
+
+if age_input >= 18:
+    print("You are an adult!")
+elif age_input >= 13:
+    print("You are a teenager!")
+else:
+    print("You are a kid!")
+
+# 3. Loops
+print("\\n3. For Loops")
+for i in range(1, 11):
+    print(i, end=" ")
+
+print("\\nEven numbers:")
+for i in range(0, 21, 2):
+    print(i, end=" ")
+
+# 4. Number Guessing Game
+print("\\n4. Number Guessing Game")
+import random
+secret = random.randint(1, 10)
+guess = 0
+
+while guess != secret:
+    guess = int(input("Guess: "))
+    if guess < secret:
+        print("Too low!")
+    elif guess > secret:
+        print("Too high!")
+    else:
+        print("Correct!")
+
+# 5. Lists
+print("\\n5. Lists")
+fruits = ["apple", "banana", "cherry"]
+fruits.append("orange")
+print(fruits)
+
+# 6. Functions
+print("\\n6. Functions")
+def greet(name="World"):
+    return f"Hello {name}!"
+print(greet("Python"))
+print(greet())
+
+# 7. Dictionaries
+print("\\n7. Dictionaries")
+student = {"name": "Emma", "age": 20, "grade": "A"}
+print(student)
+
+# 8. Strings
+print("\\n8. Strings")
+message = "   Python is Awesome!   "
+print(message.strip().upper())
+
+# 9. File Handling
+print("\\n9. File Handling")
+with open("my_notes.txt", "w") as f:
+    f.write("Hello from Python!")
+
+# 10. Error Handling
+print("\\n10. Error Handling")
+try:
+    n = int(input("Enter number: "))
+    print(100/n)
+except Exception as e:
+    print("Error:", e)
+`;
+
+    function openModal() {
+      document.getElementById("codeModal").style.display = "flex";
+      document.getElementById("codeBox").textContent = pythonCode;
+    }
+
+    function closeModal() {
+      document.getElementById("codeModal").style.display = "none";
+    }
+
+    function copyCode() {
+      navigator.clipboard.writeText(pythonCode);
+      alert("Code copied!");
+    }
+  </script>
+
 </body>
 </html>
