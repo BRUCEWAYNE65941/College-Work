@@ -242,96 +242,64 @@
 
   <script>
     const pythonCode = `
-# ================================================
-#  PYTHON BASICS - ALL IN ONE FILE (10 Lessons)
-# ================================================
-print("="*60)
-print("     WELCOME TO PYTHON BASICS - ALL IN ONE!")
-print("="*60)
+# Basic Python Programs for Beginners
 
-# 1. Variables & Data Types
-print("\\n1. Variables & Data Types")
-name = "Alice"
-age = 25
-height = 1.68
-is_student = True
-hobbies = ["coding", "music", "gaming"]
-
-print(f"Name: {name}, Age: {age}, Height: {height}m")
-print(f"Is student? {is_student}")
-print(f"Hobbies: {hobbies}")
-print(f"Age is of type: {type(age)}")
-
-# 2. Input + If-Elif-Else
-print("\\n2. Input + Conditional Statements")
-age_input = int(input("Enter your age: "))
-
-if age_input >= 18:
-    print("You are an adult!")
-elif age_input >= 13:
-    print("You are a teenager!")
+# 1. Positive or Negative
+num = int(input("Enter a number: "))
+if num > 0:
+    print("Positive")
+elif num < 0:
+    print("Negative")
 else:
-    print("You are a kid!")
+    print("Zero")
 
-# 3. Loops
-print("\\n3. For Loops")
-for i in range(1, 11):
-    print(i, end=" ")
+# 2. Even or Odd
+e = int(input("Enter a number: "))
+if e % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
 
-print("\\nEven numbers:")
-for i in range(0, 21, 2):
-    print(i, end=" ")
+# 3. Grade System
+marks = int(input("Enter marks: "))
+if marks >= 90:
+    print("Grade A")
+elif marks >= 75:
+    print("Grade B")
+elif marks >= 50:
+    print("Grade C")
+else:
+    print("Grade D")
 
-# 4. Number Guessing Game
-print("\\n4. Number Guessing Game")
-import random
-secret = random.randint(1, 10)
-guess = 0
-
-while guess != secret:
-    guess = int(input("Guess: "))
-    if guess < secret:
-        print("Too low!")
-    elif guess > secret:
-        print("Too high!")
+# 4. Nesting Condition
+age = int(input("Enter your age: "))
+if age >= 18:
+    citizen = input("Are you an Indian citizen? (yes/no): ")
+    if citizen.lower() == "yes":
+        print("Eligible to vote")
     else:
-        print("Correct!")
+        print("Not eligible to vote")
+else:
+    print("Underage")
 
-# 5. Lists
-print("\\n5. Lists")
-fruits = ["apple", "banana", "cherry"]
-fruits.append("orange")
-print(fruits)
+# 5. Greatest Number
+x = int(input("Enter first number: "))
+y = int(input("Enter second number: "))
+z = int(input("Enter third number: "))
+if x >= y and x >= z:
+    print("Greatest:", x)
+elif y >= x and y >= z:
+    print("Greatest:", y)
+else:
+    print("Greatest:", z)
 
-# 6. Functions
-print("\\n6. Functions")
-def greet(name="World"):
-    return f"Hello {name}!"
-print(greet("Python"))
-print(greet())
+# 6. Vowel or Consonant
+char = input("Enter a character: ").lower()
+if char in "aeiou":
+    print("Vowel")
+else:
+    print("Consonant")
 
-# 7. Dictionaries
-print("\\n7. Dictionaries")
-student = {"name": "Emma", "age": 20, "grade": "A"}
-print(student)
-
-# 8. Strings
-print("\\n8. Strings")
-message = "   Python is Awesome!   "
-print(message.strip().upper())
-
-# 9. File Handling
-print("\\n9. File Handling")
-with open("my_notes.txt", "w") as f:
-    f.write("Hello from Python!")
-
-# 10. Error Handling
-print("\\n10. Error Handling")
-try:
-    n = int(input("Enter number: "))
-    print(100/n)
-except Exception as e:
-    print("Error:", e)
 `;
 
     function openModal() {
