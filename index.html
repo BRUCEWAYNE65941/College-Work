@@ -2,24 +2,182 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>College - Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My College Resources</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    ul { list-style: none; }
-    li { margin: 10px 0; }
-    a { font-size: 18px; color: #0066cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --gray: #f8fafc;
+      --text: #1e293b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      color: white;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .card-icon {
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: white;
+    }
+
+    .card-content {
+      padding: 25px;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .card p {
+      color: #64748b;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn i {
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      color: white;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>My Resources</h1>
+      <p class="subtitle">Digital Logic Design & Computer Architecture</p>
+    </header>
 
-  <h1>Docs</h1>
-  <ul>
-    <li><a href="Digital_combinational_cir.pdf" target="_blank">Digital_combinational_cir</a></li>
-    <li><a href="Digital Logic & Computer Design.pdf" target="blank">Digital Logic & Computer Design Book</li>
-    
-  </ul>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <div class="card-content">
+          <h3>Combinational Circuits Notes</h3>
+          <p>Complete handwritten/class notes on digital combinational circuits, multiplexers, decoders, adders, and more.</p>
+          <a href="Digital_combinational_cir.pdf" target="_blank" class="btn">
+            <i class="fas fa-file-pdf"></i> Open PDF
+          </a>
+        </div>
+      </div>
 
-  
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="card-content">
+          <h3>Digital Logic & Computer Design</h3>
+          <p>Morris Mano - The complete reference book for Digital Logic Design (Latest Edition)</p>
+          <a href="Digital Logic & Computer Design.pdf" target="_blank" class="btn">
+            <i class="fas fa-download"></i> Download Book
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Keep learning • Stay curious • Build amazing things</p>
+    </footer>
+  </div>
 </body>
 </html>
