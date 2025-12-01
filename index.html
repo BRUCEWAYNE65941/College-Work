@@ -44,50 +44,50 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       transition: all 0.3s ease;
     }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
     .card-icon {
       height: 120px;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; color: white;
     }
     .card-content { padding: 25px; }
     .card h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--text); }
     .card p { color: #64748b; margin-bottom: 20px; line-height: 1.6; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--primary);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-      cursor: pointer;
-      border: none;
-      font-size: 1rem;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--primary); color: white;
+      padding: 12px 28px; border-radius: 50px; text-decoration: none;
+      font-weight: 600; transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); cursor: pointer; border: none;
     }
     .btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
+      background: var(--primary-dark); transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
     }
     footer { text-align: center; margin-top: 80px; color: white; opacity: 0.8; font-size: 0.9rem; }
-    .modal { display: none; position: fixed; z-index: 100; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
-              justify-content: center; align-items: center; }
-    .modal-content { background: white; padding: 25px; width: 90%; max-width: 800px; border-radius: 16px;
-                      max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative; }
-    .close { position: absolute; top: 10px; right: 20px; font-size: 2rem; cursor: pointer; color: #64748b; }
-    pre { background: #0f172a; color: #f8fafc; padding: 20px; border-radius: 12px; font-size: 0.9rem; white-space: pre-wrap; }
+
+    /* Modal */
+    .modal { display: none; position: fixed; z-index: 100; inset: 0;
+             background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+             justify-content: center; align-items: center; }
+    .modal-content {
+      background: white; padding: 30px; width: 90%; max-width: 700px;
+      border-radius: 16px; max-height: 85vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative;
+    }
+    .close { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #64748b; }
+    .pyq-list { margin-top: 20px; }
+    .pyq-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px; margin-bottom: 12px; background: #f8fafc;
+      border-radius: 12px; transition: all 0.3s;
+    }
+    .pyq-item:hover { background: #e0e7ff; transform: translateX(5px); }
+    .pyq-item a {
+      color: var(--primary); font-weight: 600; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
     @media (max-width: 600px) { h1 { font-size: 2.8rem; } .card-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -123,12 +123,12 @@
         <div class="card-content">
           <h3>Python Basics – Full Code</h3>
           <p>Click to view and copy complete Python basics code</p>
-          <button onclick="openModal()" class="btn"><i class="fas fa-copy"></i> View Code</button>
+          <button onclick="openModal('codeModal')" class="btn"><i class="fas fa-copy"></i> View Code</button>
         </div>
       </div>
     </div>
 
-    <!-- PYQ Section - Only ONE card with View button -->
+    <!-- Single PYQ Card (opens modal with multiple PDFs) -->
     <h2 class="section-title">
       <i class="fas fa-file-alt"></i> Previous Year Questions (PYQ)
     </h2>
@@ -137,11 +137,11 @@
       <div class="card">
         <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
         <div class="card-content">
-          <h3>PYQ Collection (2020–2024)</h3>
-          <p>All previous year question papers with solutions</p>
-          <a href="PYQ_Digital_Logic_Design.pdf" target="_blank" class="btn">
-            <i class="fas fa-eye"></i> View PDF
-          </a>
+          <h3>PYQ Collection</h3>
+          <p>Click to view all previous year question papers (2020–2024)</p>
+          <button onclick="openModal('pyqModal')" class="btn">
+            <i class="fas fa-eye"></i> View All PYQs
+          </button>
         </div>
       </div>
     </div>
@@ -154,29 +154,67 @@
   <!-- Python Code Modal -->
   <div id="codeModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">x</span>
+      <span class="close" onclick="closeModal('codeModal')">×</span>
       <h2>Python Basics - Full Code</h2>
-      <pre id="codeBox"></pre>
+      <pre id="codeBox"># Your full Python code here...</pre>
       <button class="btn" onclick="copyCode()">Copy Code</button>
+    </div>
+  </div>
+
+  <!-- PYQ Modal with Multiple PDFs -->
+  <div id="pyqModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('pyqModal')">×</span>
+      <h2>All Previous Year Questions</h2>
+      <div class="pyq-list">
+        <div class="pyq-item">
+          <span>2024 Even Semester (with solutions)</span>
+          <a href="PYQ_2024_Even.pdf" target="_blank"><i class="fas fa-eye"></i> View PDF</a>
+        </div>
+        <div class="pyq-item">
+          <span>2023 Odd Semester</span>
+          <a href="PYQ_2023_Odd.pdf" target="_blank"><i class="fas fa-eye"></i> View PDF</a>
+        </div>
+        <div class="pyq-item">
+          <span>2022 Even Semester</span>
+          <a href="PYQ_2022_Even.pdf" target="_blank"><i class="fas fa-eye"></i> View PDF</a>
+        </div>
+        <div class="pyq-item">
+          <span>2021 Odd Semester</span>
+          <a href="PYQ_2021_Odd.pdf" target="_blank"><i class="fas fa-eye"></i> View PDF</a>
+        </div>
+        <div class="pyq-item">
+          <span>2020 Even Semester</span>
+          <a href="PYQ_2020_Even.pdf" target="_blank"><i class="fas fa-eye"></i> View PDF</a>
+        </div>
+        <!-- Add more PYQs just by copying the line above -->
+      </div>
     </div>
   </div>
 
   <script>
     const pythonCode = `# Your complete Python code here...`;
 
-    function openModal() {
-      document.getElementById("codeModal").style.display = "flex";
-      document.getElementById("codeBox").textContent = pythonCode;
+    function openModal(id) {
+      document.getElementById(id).style.display = "flex";
+      if (id === "codeModal") {
+        document.getElementById("codeBox").textContent = pythonCode;
+      }
     }
-    function closeModal() {
-      document.getElementById("codeModal").style.display = "none";
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
     }
+
     function copyCode() {
       navigator.clipboard.writeText(pythonCode);
       alert("Code copied!");
     }
+
     window.onclick = function(e) {
-      if (e.target.classList.contains('modal')) e.target.style.display = "none";
+      if (e.target.classList.contains('modal')) {
+        e.target.style.display = "none";
+      }
     }
   </script>
 </body>
