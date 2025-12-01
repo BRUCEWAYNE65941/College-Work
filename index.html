@@ -193,7 +193,77 @@
   </div>
 
   <script>
-    const pythonCode = `# Your complete Python code here...`;
+    const pythonCode = `## Basic Python Programs for Beginners
+
+# 1. Positive or Negative
+num = int(input("Enter a number: "))
+if num > 0:
+    print("Positive")
+elif num < 0:
+    print("Negative")
+else:
+    print("Zero")
+
+# 2. Even or Odd
+e = int(input("Enter a number: "))
+if e % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+
+# 3. Grade System
+marks = int(input("Enter marks: "))
+if marks >= 90:
+    print("Grade A")
+elif marks >= 75:
+    print("Grade B")
+elif marks >= 50:
+    print("Grade C")
+else:
+    print("Grade D")
+
+# 4. Nesting Condition
+age = int(input("Enter your age: "))
+if age >= 18:
+    citizen = input("Are you an Indian citizen? (yes/no): ")
+    if citizen.lower() == "yes":
+        print("Eligible to vote")
+    else:
+        print("Not eligible to vote")
+else:
+    print("Underage")
+
+# 5. Greatest Number
+x = int(input("Enter first number: "))
+y = int(input("Enter second number: "))
+z = int(input("Enter third number: "))
+if x >= y and x >= z:
+    print("Greatest:", x)
+elif y >= x and y >= z:
+    print("Greatest:", y)
+else:
+    print("Greatest:", z)
+
+# 6. Vowel or Consonant
+char = input("Enter a character: ").lower()
+if char in "aeiou":
+    print("Vowel")
+else:
+    print("Consonant")
+
+    or
+
+    x= input("enter your word")
+
+if x=="a" or "A" or "e" or "E" or "i" or "I" or "o" or "O" or "u" or "U":
+    print("vowel")
+else: 
+    print("consonant")
+
+
+
+`;
+
 
     function openModal(id) {
       document.getElementById(id).style.display = "flex";
